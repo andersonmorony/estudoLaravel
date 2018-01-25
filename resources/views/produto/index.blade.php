@@ -63,8 +63,21 @@
                 <td>{{ $item->descricao }}</td>
                 <td>{{ $item->quantidade }}</td>
                 <td><a href="/produto/{{$item->id}}" class="btn btn-info btn-sm">Visualizar</a> </td>
-                <td><a href="#" class="btn btn-warning btn-sm">Editar</a> </td>
-                <td><a href="#" class="btn btn-danger btn-sm">Apagar </a> </td>
+                <td><a href="/produto/{{$item->id}}/edit" class="btn btn-warning btn-sm">Editar</a> </td>
+                <td>
+                  {!! Form::open([
+                      'method'=>'DELETE',
+                      'url' => ['/produto', $item->id],
+                      'style' => 'display:inline'
+                  ]) !!}
+                      {!! Form::button('Apagar', array(
+                              'type' => 'submit',
+                              'class' => 'btn btn-danger btn-sm',
+                              'title' => 'Apagar',
+                              'onclick'=>'return confirm("Confirmar exclusão?")'
+                      )) !!}
+                  {!! Form::close() !!}
+                </td>
               </tr>
             @endforeach
           </tbody>
